@@ -44,18 +44,24 @@ rt_err_t frame_check(pms_device_t dev,rt_uint8_t *buf,rt_uint16_t len)
 		dev->air_0_5um  = ((rt_uint16_t)(buf[18])<<8) | buf[19];
 		dev->air_1_0um  = ((rt_uint16_t)(buf[20])<<8) | buf[21];
 		dev->air_2_5um  = ((rt_uint16_t)(buf[22])<<8) | buf[23];
+#if !defined(PMS_SERIES_USING_PMS5003T)
 		dev->air_5_0um  = ((rt_uint16_t)(buf[24])<<8) | buf[25];
 		dev->air_10_0um = ((rt_uint16_t)(buf[26])<<8) | buf[27];
+#endif
+#if defined(PMS_SERIES_USING_PMS5003T)
+		dev->temp 		= ((rt_uint16_t)(buf[24])<<8) | buf[25];
+		dev->humi 		= ((rt_uint16_t)(buf[26])<<8) | buf[27];		
+#endif
 #if defined(PMS_SERIES_USING_PMS5003S)
 		dev->hcho 		= ((rt_uint16_t)(buf[28])<<8) | buf[29];		
-#endif		
+#endif
 #if defined(PMS_SERIES_USING_PMS5003ST)
 		dev->hcho 		= ((rt_uint16_t)(buf[28])<<8) | buf[29];
 		dev->temp 		= ((rt_uint16_t)(buf[30])<<8) | buf[31];
 		dev->humi 		= ((rt_uint16_t)(buf[32])<<8) | buf[33];
 #endif
 
-#if defined(PMS_SERIES_USING_PMS5003) || defined(PMS_SERIES_USING_PMS5003ST) || defined(PMS_SERIES_USING_PMSA003) || defined(PMS_SERIES_USING_PMS7003M)
+#if defined(PMS_SERIES_USING_PMS5003) || defined(PMS_SERIES_USING_PMS5003T) || defined(PMS_SERIES_USING_PMS5003ST) || defined(PMS_SERIES_USING_PMSA003) || defined(PMS_SERIES_USING_PMS7003M)
 		dev->version	= buf[len - 4];
 		dev->errorCode	= buf[len - 3];
 #endif
