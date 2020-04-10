@@ -6,6 +6,7 @@
  * Change Logs:
  * Date           Author       Notes
  * 2020-04-01     MrpYoung  the first version
+ * 2020-04-10     Aspirin   add support for pms5003t
  */
 #define DBG_SECTION_NAME "pms_series"
 #define DBG_LEVEL DBG_LOG
