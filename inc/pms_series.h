@@ -18,15 +18,15 @@
 #include <rtdevice.h>
 
 #if defined(PMS_SERIES_USING_PMS5003ST)
-#define COMM_LEN			40				//data = 17  +  check 2  = 19
+#define COMM_LEN            40              //data = 17  +  check 2  = 19
 #else 
-#define COMM_LEN			32
+#define COMM_LEN            32
 #endif
 
 struct pms_device
 {
-    rt_device_t serial;	
-	struct serial_configure config;	
+    rt_device_t serial; 
+    struct serial_configure config; 
     rt_uint16_t len;
     rt_uint16_t PM1_0_CF1;
     rt_uint16_t PM2_5_CF1;
@@ -40,14 +40,14 @@ struct pms_device
     rt_uint16_t air_2_5um;
     rt_uint16_t air_5_0um;
     rt_uint16_t air_10_0um;
-	
-	rt_uint16_t hcho;
-	rt_uint16_t temp;
-	rt_uint16_t humi;
-	
+    
+    rt_uint16_t hcho;
+    rt_uint16_t temp;
+    rt_uint16_t humi;
+    
     rt_uint8_t  version;
     rt_uint8_t  errorCode;
-    rt_uint16_t checksum;	
+    rt_uint16_t checksum;   
 };
 typedef struct pms_device *pms_device_t;
 
